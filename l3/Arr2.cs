@@ -128,8 +128,26 @@ namespace l3
                     col++;
                 }
             }
-
+            Console.WriteLine();
             PrintArr();
+        }
+
+        public void SumCols()
+        {
+            int rank = arr2.GetLength(0);
+            List<int> sums = new List<int>();
+            for (int startCol = rank-1; startCol >= 0; startCol--)
+            {
+                int col = startCol;
+                int row = 0;
+                
+                while (row < rank && col < rank-1)
+                {
+                    sums[col] += arr2[row, col];
+                }
+                
+            }
+            Console.WriteLine(sums);
         }
 
         
