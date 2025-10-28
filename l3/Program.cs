@@ -12,14 +12,18 @@ namespace l3
             Console.Write("Введите ширину массива(m): ");
             int m = Convert.ToInt32(Console.ReadLine());
 
-            int[,] arr2Dnm = new int[n, m];
-            int[,] arr2Dnn = new int[n, n];
+            int[,] key_arr = new int[n, m];
+            int[,] rnd_arr = new int[n, n];
+            int[,] diag_arr = new int[n, n];
 
-            Arr2 keyboard_arr = new Arr2(arr2Dnm);
-            keyboard_arr.KeyboardArr();
+            Arr2 keyboard_arr = new Arr2(key_arr);
+            //keyboard_arr.KeyboardArr();
 
-            Arr2 random_arr = new Arr2(arr2Dnn);
-            random_arr.RandomArr();
+            Arr2 random_arr = new Arr2(rnd_arr);
+            //random_arr.RandomArr();
+
+            Arr2 diagonal_arr = new Arr2(diag_arr);
+            diagonal_arr.DiagonalArr();
         }
     }
 }

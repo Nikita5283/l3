@@ -15,12 +15,10 @@ namespace l3
             this.arr2 = arr2;
         }
 
-        public void KeyboardArr()
+        public void PrintArr()
         {
             int height = arr2.GetLength(0);
             int width = arr2.GetLength(1);
-
-            Console.WriteLine("Массив введенный с клавиатуры(nxm): ");
 
             for (int i = 0; i < height; i++)
             {
@@ -32,19 +30,37 @@ namespace l3
             }
         }
 
-        public void RandomArr()
+        public void KeyboardArr()
         {
-
             int height = arr2.GetLength(0);
             int width = arr2.GetLength(1);
-
-            Random random = new Random();
 
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    int rnd_num = 0;
+                    Console.Write("Введите элемент массива по индексу: [" + i + "," + j + "]: ");
+                    arr2[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Массив введенный с клавиатуры(nxm): ");
+            PrintArr();
+        }
+
+        public void RandomArr()
+        {
+
+            int rank = arr2.GetLength(0);
+
+            Random random = new Random();
+
+            for (int i = 0; i < rank; i++)
+            {
+                for (int j = 0; j < rank; j++)
+                {
+                    int rnd_num;
                     if (i % 2 == 0)
                     {
                         if (j % 2 == 0)
@@ -92,14 +108,28 @@ namespace l3
 
             Console.WriteLine("Массив рандомных чисел(nxn): ");
 
-            for (int i = 0; i < height; i++)
+            PrintArr();
+        }
+
+        public void DiagonalArr()
+        {
+            int rank = arr2.GetLength(0);//размер массива
+            int num = 1;
+
+            // Заполняем диагоналями, начиная с нижнего ряда
+            for (int startRow = rank - 1; startRow >= 0; startRow--)
             {
-                for (int j = 0; j < width; j++)
+                int row = startRow;
+                int col = 0;
+                while (row < rank && col < rank)
                 {
-                    Console.Write(arr2[i, j] + " ");
+                    arr2[row, col] = num++;
+                    row++;
+                    col++;
                 }
-                Console.WriteLine();
             }
+
+            PrintArr();
         }
 
         
