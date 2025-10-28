@@ -15,16 +15,19 @@ namespace l3
             this.arr2 = arr2;
         }
 
-        public void PrintArr()
+        public Arr2(){}
+
+        //1.9
+        public void PrintArr(int[,] arr)
         {
-            int height = arr2.GetLength(0);
-            int width = arr2.GetLength(1);
+            int height = arr.GetLength(0);
+            int width = arr.GetLength(1);
 
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    Console.Write(arr2[i, j] + " ");
+                    Console.Write(arr[i, j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -46,7 +49,7 @@ namespace l3
             }
 
             Console.WriteLine("Массив введенный с клавиатуры(nxm): ");
-            PrintArr();
+            PrintArr(arr2);
         }
 
         public void RandomArr()
@@ -108,7 +111,7 @@ namespace l3
 
             Console.WriteLine("Массив рандомных чисел(nxn): ");
 
-            PrintArr();
+            PrintArr(arr2);
         }
 
         public void DiagonalArr()
@@ -128,26 +131,54 @@ namespace l3
                     col++;
                 }
             }
-            Console.WriteLine();
-            PrintArr();
+            Console.WriteLine("Диагонально заполненный массив(nxn): ");
+            PrintArr(arr2);
         }
 
+        //2.9
         public void SumCols()
         {
             int rank = arr2.GetLength(0);
-            List<int> sums = new List<int>();
-            for (int startCol = rank-1; startCol >= 0; startCol--)
+            int[] sums = new int [rank];
+            
+            int col = 0;
+            for (int Endrow = rank - 1; Endrow >= 0; Endrow--)
             {
-                int col = startCol;
                 int row = 0;
-                
-                while (row < rank && col < rank-1)
+
+                while (row < Endrow) 
                 {
                     sums[col] += arr2[row, col];
+                    row++;
                 }
+                col++;
                 
             }
-            Console.WriteLine(sums);
+
+            for (int i = 0; i < rank; i++)
+            {
+                Console.WriteLine("сумма эл-тов в столбце " + i + ": " + sums[i]);
+            }
+
+            Console.WriteLine("Максимальная сумма: " + sums.Max());
+        }
+
+        //3.9
+        public void Transposition(int[,] matr)
+        {
+            int heightM = matr.GetLength(0);
+            int widthM = matr.GetLength(1);
+            int[,] Ctr = new int[heightM, widthM];
+            for (int i = 0; i < heightM; i++)
+            {
+                for (int j = 0; j < widthM; j++)
+                {
+                    Ctr[i, j] = matr[j, i];
+                }
+            }
+
+            PrintArr(Ctr);
+
         }
 
         
