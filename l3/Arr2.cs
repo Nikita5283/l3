@@ -140,7 +140,7 @@ namespace l3
             {
                 for (int j = 0; j < width; j++)
                 {
-                    Console.Write($"{arr.GetValue(i, j),4}");
+                    Console.Write(arr.GetValue(i, j) + " ");
                 }
                 Console.WriteLine();
             }
