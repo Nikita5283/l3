@@ -10,40 +10,29 @@ namespace l3
     {
         private int[,] arr2;
 
+        // Конструктор для 2.9
         public Arr2(int[,] arr2)
         {
             this.arr2 = arr2;
         }
 
-        public Arr2(){}
-
         //1.9
-        public void PrintArr(int[,] arr)
-        {
-            int height = arr.GetLength(0);
-            int width = arr.GetLength(1);
 
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    Console.Write(arr[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public void KeyboardArr()
+        // Ввод массива с клавиатуры
+        public Arr2(ushort[,] arr2)
         {
             int height = arr2.GetLength(0);
             int width = arr2.GetLength(1);
+            this.arr2 = new int[height, width];
 
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
                     Console.Write("Введите элемент массива по индексу: [" + i + "," + j + "]: ");
-                    arr2[i, j] = Convert.ToInt32(Console.ReadLine());
+                    int el = Convert.ToInt32(Console.ReadLine());
+                    arr2[i, j] = Convert.ToUInt16(el);
+                    this.arr2[i, j] = el;
                 }
                 Console.WriteLine();
             }
@@ -52,10 +41,11 @@ namespace l3
             PrintArr(arr2);
         }
 
-        public void RandomArr()
+        // Заполнение в шахматном порядке(черные-четные, белые-нечетные)
+        public Arr2(byte[,] arr)
         {
-
-            int rank = arr2.GetLength(0);
+            int rank = arr.GetLength(0);
+            this.arr2 = new int[rank, rank];
 
             Random random = new Random();
 
@@ -103,7 +93,8 @@ namespace l3
                         }
                     }
 
-                    arr2[i, j] = rnd_num;
+                    arr[i, j] = (byte)rnd_num;
+                    this.arr2[i, j] = rnd_num;
                     
                 }
                 Console.WriteLine();
@@ -114,9 +105,11 @@ namespace l3
             PrintArr(arr2);
         }
 
-        public void DiagonalArr()
+        // Заполнение массива по диагоналям
+        public Arr2(short[,] arr2)
         {
             int rank = arr2.GetLength(0);//размер массива
+            this.arr2 = new int[rank, rank];
             int num = 1;
 
             // Заполняем диагоналями, начиная с нижнего ряда
@@ -126,13 +119,31 @@ namespace l3
                 int col = 0;
                 while (row < rank && col < rank)
                 {
-                    arr2[row, col] = num++;
+                    arr2[row, col] = (short)num;
+                    this.arr2[row, col] = num;
+                    num++;
                     row++;
                     col++;
                 }
             }
             Console.WriteLine("Диагонально заполненный массив(nxn): ");
             PrintArr(arr2);
+        }
+
+        //метод для вывода массива
+        public void PrintArr(Array arr)
+        {
+            int height = arr.GetLength(0);
+            int width = arr.GetLength(1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    Console.Write($"{arr.GetValue(i, j),4}");
+                }
+                Console.WriteLine();
+            }
         }
 
         //2.9
@@ -161,6 +172,25 @@ namespace l3
             }
 
             Console.WriteLine("Максимальная сумма: " + sums.Max());
+        }
+
+        public void KeyboardArr()
+        {
+            int height = arr2.GetLength(0);
+            int width = arr2.GetLength(1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    Console.Write("Введите элемент массива по индексу: [" + i + "," + j + "]: ");
+                    arr2[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Массив введенный с клавиатуры(nxm): ");
+            PrintArr(arr2);
         }
 
         //3.9
